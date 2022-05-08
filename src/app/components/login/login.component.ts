@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.loginService.getToken(this.email, this.password).subscribe({
       next(response) {
         localStorage.setItem("token", response.token);
-        _router.navigate(["home"]);
+        _router.navigate(['home']);
       },
       error(err) {console.log(err)},
     });

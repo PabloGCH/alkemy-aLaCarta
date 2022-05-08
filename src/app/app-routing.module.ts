@@ -8,8 +8,9 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginGuardGuard } from './guards/login-guard.guard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [LoginGuardGuard]},
+  {path: 'home', component: HomeComponent, canActivate: [LoginGuardGuard]},
   {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({
