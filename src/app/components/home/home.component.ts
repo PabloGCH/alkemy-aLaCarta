@@ -13,9 +13,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginService.verifyToken(localStorage.getItem("token")).subscribe({
-      next(data) {console.log(data)}
-    });
+    console.log("you got here");
   }
 
 }

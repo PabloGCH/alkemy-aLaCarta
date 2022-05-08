@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginTokenRequestService {
-  tokenURL :string = "http://challenge-react.alkemy.org/"
+  tokenURL :string = "http://challenge-react.alkemy.org/";
   constructor(private http :HttpClient) {
 
   }
@@ -19,7 +19,4 @@ export class LoginTokenRequestService {
     return this.http.post<any>(this.tokenURL, body);
   }
 
-  verifyToken(token :string | null) {
-    return this.http.get(this.tokenURL + token);
-  }
 }

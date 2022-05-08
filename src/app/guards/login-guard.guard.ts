@@ -21,7 +21,7 @@ export class LoginGuardGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = localStorage.getItem("token") === null;
     this.redirect(token);
-    return token;
+    return !token;
   }
   
 }
