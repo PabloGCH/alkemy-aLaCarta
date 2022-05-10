@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 
 import { LoginTokenRequestService } from 'src/app/service/login-token-request.service';
@@ -12,8 +12,13 @@ import { LoginTokenRequestService } from 'src/app/service/login-token-request.se
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  email:string = '';
-  password:string = '';
+  loginForm = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
+    password: new FormControl('', Validators.required)
+  });
 
   constructor(
     private loginService :LoginTokenRequestService,
@@ -23,10 +28,23 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  emailError(input :string) {
+    return this.loginForm.get(input)?.errors?.['email'];
+  }
+  requiredError(input :string) {
+    return this.loginForm.get(input)?.errors?.['required'];
+  }
+  invalid(input :string) {
+    return this.loginForm.get(input)?.invalid;
+  }
+  touched(input :string) {
+    return this.loginForm.get(input)?.touched;
+  }
+
 
   loginSubmit() {
     let _router = this._router;
-    this.loginService.getToken(this.email, this.password).subscribe({
+    this.loginService.getToken(this.loginForm.get(['email'])?.value, this.loginForm.get(['password'])?.value).subscribe({
       next(response) {
         localStorage.setItem("token", response.token);
         _router.navigate(['home']);
