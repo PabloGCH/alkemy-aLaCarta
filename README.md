@@ -1,1 +1,1 @@
-# Projecto de Angualar para alkemy
+# Projecto de Angular para alkemy
