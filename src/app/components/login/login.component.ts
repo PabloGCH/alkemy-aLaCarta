@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     let _router = this._router;
     this.loginService.getToken(this.loginForm.get(['email'])?.value, this.loginForm.get(['password'])?.value).subscribe({
       next(response) {
-        localStorage.setItem("token", response.token);
+        sessionStorage.setItem("token", response.token);
         _router.navigate(['home']);
       },
       error(err) {console.log(err)},

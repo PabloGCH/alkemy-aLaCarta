@@ -1,5 +1,10 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { LoginTokenRequestService } from 'src/app/service/login-token-request.service';
+import { Component, OnInit } from '@angular/core';
+
+
+import { DishBoxComponent } from '../dish-box/dish-box.component';
+
+import { DishRequestService } from 'src/app/service/dish-request.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,15 +12,12 @@ import { LoginTokenRequestService } from 'src/app/service/login-token-request.se
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  @HostListener('window:beforeunload', ["$event"])
-  clearLocalStorage() {
-    localStorage.clear();
-  };
-  constructor(private loginService :LoginTokenRequestService) {
+  constructor(private dishRequest :DishRequestService) {
 
   }
 
+
   ngOnInit(): void {
-    console.log("you got here");
+    
   }
 }
