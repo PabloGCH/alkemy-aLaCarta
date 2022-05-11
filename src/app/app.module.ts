@@ -9,13 +9,17 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { DishBoxComponent } from './components/dish-box/dish-box.component';
+import { DishSearchComponent } from './components/dish-search/dish-search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    DishBoxComponent,
+    DishSearchComponent
   ],
   imports: [
     BrowserModule,
