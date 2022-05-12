@@ -29,7 +29,7 @@ export class DishSearchComponent implements OnInit {
   getDishes() {
     this.dishRequest.searchDish(this.searchbar.value).subscribe(result => {
       this.dishes = result.results;
-      console.log(this.dishes);
+      console.log(this.dishes[0]);
     });
   }
 

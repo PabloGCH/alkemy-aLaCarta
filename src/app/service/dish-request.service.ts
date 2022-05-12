@@ -11,7 +11,7 @@ export class DishRequestService {
   constructor(private http :HttpClient) {
   }
   searchDish (searchTerm :string) {
-    return this.http.get<any>(this.apiUrl + "?query=" + searchTerm + "&apiKey=" + this.apiKey);
+    return this.http.get<any>(this.apiUrl + "?query=" + searchTerm + "&addRecipeInformation=true" + "&apiKey=" + this.apiKey);
   }
 
 
