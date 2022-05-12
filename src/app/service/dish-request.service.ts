@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 
 @Injectable({
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DishRequestService {
   apiUrl :string = "https://api.spoonacular.com/recipes/complexSearch";
-  apiKey :string = "";
+  apiKey :string = "98334ec2e25c4f35b8f55970e7151685";
   constructor(private http :HttpClient) {
   }
   searchDish (searchTerm :string) {
