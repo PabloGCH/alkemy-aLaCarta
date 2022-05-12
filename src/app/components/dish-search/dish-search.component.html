@@ -1,1 +1,8 @@
-<p>dish-search works!</p>
+<a routerLink="/home"> &lt; Go back</a>
+<h1>Search</h1>
+<label for="search">Search: </label>
+<input id="search" type="text" [formControl]="searchbar" class="form-control">
+<button (click)="getDishes()" class="btn btn-primary">Test</button>
+<div class="container bg-primary py-2 px-2" style="height: 60vh; overflow-y: scroll;">
+    <app-dish-box *ngFor="let dish of dishes" [dish]="dish"></app-dish-box>
+</div>

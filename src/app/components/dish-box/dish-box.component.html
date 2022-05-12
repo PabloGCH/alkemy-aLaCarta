@@ -1,11 +1,11 @@
-<div class="bg-light d-flex flex-row">
-    <img src="" alt="" style="width: 200px; background-color: black;">
+<div class="bg-light d-flex flex-row mb-2">
+    <img src="{{dish?.image}}" alt="" style="width: 200px; background-color: black;">
     <div class="d-flex flex-column py-2 px-2">
-        <p>Dish name</p>
+        <p>{{dish?.title}}</p>
         <p>Dish description</p>
         <div>
             <button class="btn btn-danger">Delete</button>
-            <button class="btn btn-primary">See more</button>
+            <button class="btn btn-primary" (click)="seeDish()">See more</button>
         </div>
     </div>
 </div>
