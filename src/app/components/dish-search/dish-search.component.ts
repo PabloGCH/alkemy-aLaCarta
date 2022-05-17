@@ -1,10 +1,11 @@
 //Dependencies
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 
 //Services
 import { DishRequestService } from 'src/app/service/dish-request.service';
+import { MenuDishesService } from 'src/app/service/menu-dishes.service';
 
 //Components
 import { DishBoxComponent } from '../dish-box/dish-box.component';
@@ -18,7 +19,8 @@ import { DishBoxComponent } from '../dish-box/dish-box.component';
 export class DishSearchComponent implements OnInit {
   searchbar = new FormControl;
   dishes :Array<JSON> = [];
-  constructor(private dishRequest :DishRequestService) {
+  @Input() selectedDishes :Array<JSON> = [];
+  constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
     /*
     // Debounce para busqueda
     this.searchbar.valueChanges.pipe(debounceTime(1200)).subscribe(result => {
@@ -31,6 +33,9 @@ export class DishSearchComponent implements OnInit {
       this.dishes = result.results;
       console.log(this.dishes[0]);
     });
+  }
+  addDishButton(index :number) {
+    this.menu.addDish(this.dishes[index]);
   }
 
   ngOnInit(): void {
