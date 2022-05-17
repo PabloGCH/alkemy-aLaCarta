@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 
 import { LoginTokenRequestService } from 'src/app/service/login-token-request.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -41,7 +42,6 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get(input)?.touched;
   }
 
-
   loginSubmit() {
     let _router = this._router;
     this.loginService.getToken(this.loginForm.get(['email'])?.value, this.loginForm.get(['password'])?.value).subscribe({
@@ -49,7 +49,12 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("token", response.token);
         _router.navigate(['home']);
       },
-      error(err) {console.log(err)},
+      error(err) {
+        Swal.fire({
+          title: "Error during login",
+          icon: "error"
+        });
+      },
     });
   }
 }

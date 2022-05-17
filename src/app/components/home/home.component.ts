@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { DishBoxComponent } from '../dish-box/dish-box.component';
 import { DishRequestService } from 'src/app/service/dish-request.service';
 import { MenuDishesService } from 'src/app/service/menu-dishes.service';
@@ -16,8 +17,24 @@ export class HomeComponent implements OnInit{
   getMenuDishes() :Array<JSON>{
     return this.menu.getMenu();
   }
+  removeSuccess() {
+    Swal.fire({
+      icon:"success",
+      title:"Dish removed"
+    })
+  }
   removeFromMenu(index :number) {
-    this.menu.removeDish(index);
+    Swal.fire({
+      icon:"warning",
+      title:"Do yo wish to remove this dish?",
+      showCancelButton: true,
+      confirmButtonText: "Remove"
+    }).then(value => {
+      if(value.isConfirmed){
+        this.menu.removeDish(index);
+        this.removeSuccess();
+      }
+    });
   }
 
   ngOnInit(): void {

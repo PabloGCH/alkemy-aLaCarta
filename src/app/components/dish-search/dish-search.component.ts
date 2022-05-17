@@ -2,6 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import Swal from 'sweetalert2';
 
 //Services
 import { DishRequestService } from 'src/app/service/dish-request.service';
@@ -18,8 +19,7 @@ import { DishBoxComponent } from '../dish-box/dish-box.component';
 })
 export class DishSearchComponent implements OnInit {
   searchbar = new FormControl;
-  dishes :Array<JSON> = [];
-  @Input() selectedDishes :Array<JSON> = [];
+  dishes :Array<any> = [];
   constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
     /*
     // Debounce para busqueda
@@ -31,11 +31,60 @@ export class DishSearchComponent implements OnInit {
   getDishes() {
     this.dishRequest.searchDish(this.searchbar.value).subscribe(result => {
       this.dishes = result.results;
-      console.log(this.dishes[0]);
+    });
+  }
+
+  addAlert(dish :JSON) {
+    Swal.fire({
+      icon:'question',
+      title:'Do you wish to add this dish?',
+      showCancelButton: true,
+      confirmButtonText: "Add"
+    }).then(value => {
+      if( value.isConfirmed) {
+        this.menu.addDish(dish);
+        this.addSuccessAlert();
+      }
+    })
+  }
+  addSuccessAlert() {
+    Swal.fire({
+      icon:"success",
+      title:"dish added"
+    });
+  }
+  maxErrorAlert() {
+    Swal.fire({
+      icon:"error",
+      title:"You can't add more than 4 dishes"
+    });
+  }
+  addErrorAlert() {
+    Swal.fire({
+      icon:"error",
+      title:"there must be 2 vegan and non-vegan dishes"
     });
   }
   addDishButton(index :number) {
-    this.menu.addDish(this.dishes[index]);
+    if(this.menu.numOfDishes() == 4) {
+      this.maxErrorAlert();
+    } else {
+      if(this.dishes[index]?.vegan) {
+        if(this.menu.numOfVeganDishes() == 2) {
+          this.addErrorAlert();
+        } else {
+          this.addAlert(this.dishes[index]);
+        }
+      } else {
+        if(this.menu.numOfVeganDishes() == 0 && this.menu.numOfDishes() == 2) {
+          this.addErrorAlert();
+        } else if(this.menu.numOfVeganDishes() == 0 && this.menu.numOfDishes() == 2) {
+          this.addErrorAlert();
+        } else {
+          this.addAlert(this.dishes[index]);
+        }
+      }
+    }
   }
 
   ngOnInit(): void {
