@@ -12,7 +12,7 @@ import { MenuDishesService } from 'src/app/service/menu-dishes.service';
 })
 export class HomeComponent implements OnInit{
   totalHealthScore :number = 0;
-  totalPrice :number = 0;
+  totalPrice :string = '';
   totalServingTime :number = 0;
   constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
 

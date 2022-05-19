@@ -21,12 +21,14 @@ export class DishSearchComponent implements OnInit {
   searchbar = new FormControl;
   dishes :Array<any> = [];
   constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
-    /*
     // Debounce para busqueda
     this.searchbar.valueChanges.pipe(debounceTime(1200)).subscribe(result => {
-      console.log(result);
-    })
-    */
+      if(this.searchbar.value?.length > 2) {
+        this.getDishes();
+      } else {
+        this.dishes = [];
+      }
+    });
   }
   getDishes() {
     this.dishRequest.searchDish(this.searchbar.value).subscribe(result => {

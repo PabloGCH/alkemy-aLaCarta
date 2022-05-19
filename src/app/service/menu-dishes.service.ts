@@ -29,12 +29,12 @@ export class MenuDishesService {
   numOfVeganDishes() {
     return this.veganDishes;
   }
-  getTotalPrice() :number{
+  getTotalPrice() :string{
     let totalPrice :number= 0;
     this.menu.forEach(element => {
       totalPrice += element?.pricePerServing;
     });
-    return totalPrice;
+    return totalPrice.toFixed(2);
   }
   getTotalServingTime() :number{
     let totalServingTime :number= 0;

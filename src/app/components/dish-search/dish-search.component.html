@@ -6,7 +6,6 @@
     <h1 class="text-center">Search</h1>
     <label for="search">Search: </label>
     <input id="search" type="text" [formControl]="searchbar" class="form-control">
-    <button (click)="getDishes()" class="btn btn-primary">Test</button>
     <div class="container py-2 px-2">
     <div class="bg-light mb-2 position-relative" *ngFor="let dish of dishes, let i=index">
         <app-dish-box [dish]="dish" [index]="i"></app-dish-box>
