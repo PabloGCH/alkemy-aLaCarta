@@ -5,4 +5,11 @@
         <app-dish-box [dish]="dish" [index]="i"></app-dish-box>
         <button class="btn btn-danger position-absolute bottom-0 end-0 mb-2 me-2" (click)="removeFromMenu(i)">Delete</button>
     </div>
+    <div>
+        <ul>
+            <li>Total price: ${{totalPrice}}</li>
+            <li>Total health score: {{totalHealthScore}} points</li>
+            <li>Total serving time: {{totalServingTime}} minutes</li>
+        </ul>
+    </div>
 </div>
