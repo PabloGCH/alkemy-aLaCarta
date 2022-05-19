@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  submitting :boolean = false;
   loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -43,18 +44,26 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
+    let reference = this;
+    reference.submitting = true;
     let _router = this._router;
     this.loginService.getToken(this.loginForm.get(['email'])?.value, this.loginForm.get(['password'])?.value).subscribe({
       next(response) {
         sessionStorage.setItem("token", response.token);
         _router.navigate(['home']);
+        reference.submitting = false;
       },
       error(err) {
         Swal.fire({
           title: "Error during login",
-          icon: "error"
+          icon: "error",
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: "btn btn-success mx-2",
+          }
         });
-      },
+        reference.submitting = false;
+      }
     });
   }
 }
