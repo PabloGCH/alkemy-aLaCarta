@@ -5,7 +5,7 @@
     position: fixed;
     background-size: cover;
     background-image: url("../assets/background.jpg");
-    filter: brightness(55%);
+    filter: brightness(45%);
     z-index: -1;
 }
 .title-icon {
@@ -16,4 +16,10 @@
     font-family: 'Smooch', cursive;
     color: white;
     font-size: 50px;
+    @media screen and (min-width:576px) {
+        font-size: 80px;
+    }
+    @media screen and (min-width:992px) {
+        font-size: 100px;
+    }
 }

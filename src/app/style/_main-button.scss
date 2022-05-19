@@ -1,0 +1,33 @@
+.main-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    z-index: 1000;
+}
+.main-button-text {
+    display: none;
+}
+.main-button-img {
+    display: block;
+    width: 50px;
+}
+@media screen and (min-width:576px) {
+    .main-button {
+        width: 100px;
+        height: auto;
+        position: relative;
+        border-radius: 5px;
+    }
+    .main-button-text {
+        display: block;
+    }
+    .main-button-img {
+        display: none;
+    }
+}

@@ -38,6 +38,12 @@ export class DishSearchComponent implements OnInit {
     Swal.fire({
       icon:'question',
       title:'Do you wish to add this dish?',
+      reverseButtons: true,
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+        cancelButton: "btn btn-secondary mx-2"
+      },
       showCancelButton: true,
       confirmButtonText: "Add"
     }).then(value => {
@@ -50,19 +56,31 @@ export class DishSearchComponent implements OnInit {
   addSuccessAlert() {
     Swal.fire({
       icon:"success",
-      title:"dish added"
+      title:"Dish added",
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+      }
     });
   }
   maxErrorAlert() {
     Swal.fire({
       icon:"error",
-      title:"You can't add more than 4 dishes"
+      title:"You can't add more than 4 dishes",
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+      }
     });
   }
   addErrorAlert() {
     Swal.fire({
       icon:"error",
-      title:"there must be 2 vegan and non-vegan dishes"
+      title:"There must be 2 vegan and non-vegan dishes",
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+      }
     });
   }
   addDishButton(index :number) {

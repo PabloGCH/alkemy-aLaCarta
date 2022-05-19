@@ -23,13 +23,23 @@ export class HomeComponent implements OnInit{
   removeSuccess() {
     Swal.fire({
       icon:"success",
-      title:"Dish removed"
+      title:"Dish removed",
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "btn btn-success mx-2",
+      }
     })
   }
   removeFromMenu(index :number) {
     Swal.fire({
       icon:"warning",
       title:"Do yo wish to remove this dish?",
+      reverseButtons: true,
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: "btn btn-danger mx-2",
+        cancelButton: "btn btn-secondary mx-2"
+      },
       showCancelButton: true,
       confirmButtonText: "Remove"
     }).then(value => {
