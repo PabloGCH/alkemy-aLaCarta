@@ -2,3 +2,18 @@
     display: block;
     height: 2em;
 }
+.login-form {
+    background-color: white;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 600px;
+    .form-group {
+        width: 100%;
+    }
+    button {
+        width: 100%;
+        @media screen and (min-width:576px) {
+            width: 80px;
+        }
+    }
+}

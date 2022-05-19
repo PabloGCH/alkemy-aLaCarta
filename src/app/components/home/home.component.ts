@@ -11,6 +11,9 @@ import { MenuDishesService } from 'src/app/service/menu-dishes.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
+  totalHealthScore :number = 0;
+  totalPrice :number = 0;
+  totalServingTime :number = 0;
   constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
 
   }
@@ -33,11 +36,17 @@ export class HomeComponent implements OnInit{
       if(value.isConfirmed){
         this.menu.removeDish(index);
         this.removeSuccess();
+        this.updateMenu();
       }
     });
   }
+  updateMenu() {
+    this.totalHealthScore = this.menu.getTotalHealthScore();
+    this.totalPrice = this.menu.getTotalPrice();
+    this.totalServingTime = this.menu.getTotalServingTime();
+  }
 
   ngOnInit(): void {
-    
+    this.updateMenu();
   }
 }

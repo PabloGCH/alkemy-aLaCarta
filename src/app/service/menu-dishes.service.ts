@@ -29,4 +29,25 @@ export class MenuDishesService {
   numOfVeganDishes() {
     return this.veganDishes;
   }
+  getTotalPrice() :number{
+    let totalPrice :number= 0;
+    this.menu.forEach(element => {
+      totalPrice += element?.pricePerServing;
+    });
+    return totalPrice;
+  }
+  getTotalServingTime() :number{
+    let totalServingTime :number= 0;
+    this.menu.forEach(element => {
+      totalServingTime += element?.readyInMinutes;
+    });
+    return totalServingTime;
+  }
+  getTotalHealthScore() :number{
+    let totalHealthScore :number= 0;
+    this.menu.forEach(element => {
+      totalHealthScore += element?.healthScore;
+    });
+    return totalHealthScore;
+  }
 }
