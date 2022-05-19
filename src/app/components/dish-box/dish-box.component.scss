@@ -1,0 +1,12 @@
+.content-box-image {
+    object-fit: cover;
+}
+.content-box-title {
+    width: 75%;
+}
+.content-box-text {
+    font-size: 15px;
+    @media screen and (min-width:992px) {
+        font-size: 20px;
+    }
+}
