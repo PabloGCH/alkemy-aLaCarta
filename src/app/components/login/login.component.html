@@ -15,7 +15,7 @@
                 <p *ngIf = "requiredError('password') && touched('password')">Please enter a password</p>
             </div>
         </div>
-        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success" value="submit">Login</button>
+        <button [disabled]="loginForm.invalid || submitting" type="submit" class="btn btn-success" value="submit">Login</button>
     </form>
 </div>
 
