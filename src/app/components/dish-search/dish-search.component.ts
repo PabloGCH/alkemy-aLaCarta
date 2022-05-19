@@ -21,7 +21,8 @@ export class DishSearchComponent implements OnInit {
   searchbar = new FormControl;
   dishes :Array<any> = [];
   constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
-    // Debounce para busqueda
+    //Si el valor de searchbar sufre cambios y tiene dentro un string mas largo que 2 caracteres
+    //ejecuta getDishes()
     this.searchbar.valueChanges.pipe(debounceTime(1200)).subscribe(result => {
       if(this.searchbar.value?.length > 2) {
         this.getDishes();
@@ -30,12 +31,14 @@ export class DishSearchComponent implements OnInit {
       }
     });
   }
+  //Hace una peticion para conseguir platos y los guarda en la variable dishes
   getDishes() {
     this.dishRequest.searchDish(this.searchbar.value).subscribe(result => {
       this.dishes = result.results;
     });
   }
-
+  //Recibe un objeto plato y ejecuta una alerta para preguntar al usuario si quiere
+  //agregarlo al menu, si es confirmado se agrega el plato al menu
   addAlert(dish :JSON) {
     Swal.fire({
       icon:'question',
@@ -55,6 +58,7 @@ export class DishSearchComponent implements OnInit {
       }
     })
   }
+  //Ejecuta un alert para notificar al usuario que se agrego un plato con exito
   addSuccessAlert() {
     Swal.fire({
       icon:"success",
@@ -65,6 +69,7 @@ export class DishSearchComponent implements OnInit {
       }
     });
   }
+  //Ejecuta un alert para notificar al usuario que se llego al maximo de platos
   maxErrorAlert() {
     Swal.fire({
       icon:"error",
@@ -75,6 +80,7 @@ export class DishSearchComponent implements OnInit {
       }
     });
   }
+  //Ejecuta un alert para notificar al usuario que deben haber 2 platos no veganos y 2 veganos
   addErrorAlert() {
     Swal.fire({
       icon:"error",
@@ -85,6 +91,11 @@ export class DishSearchComponent implements OnInit {
       }
     });
   }
+  //Recibe un index y si cumple las siguientes condiciones:
+  //  - Maximo de 4 platos
+  //  - 2 platos veganos y 2 no veganos
+  //Le pregunta al usuario si desea agregar el plato en dishes[index]
+  //en caso de confirmar lo agrega al menu
   addDishButton(index :number) {
     if(this.menu.numOfDishes() == 4) {
       this.maxErrorAlert();

@@ -16,6 +16,8 @@ export class DishBoxComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  //Recibe un elemento html, si su atributo aria-expanded tiene un valor
+  // de true modifica su inner html a see less, de lo contrario lo cambia a see more
   expandLinkText(element :HTMLElement){
     console.log(typeof(element.getAttribute('aria-expanded')));
     if(element.getAttribute('aria-expanded') == 'true') {
@@ -24,9 +26,4 @@ export class DishBoxComponent implements OnInit {
       element.innerHTML = "See more";
     }
   }
-
-  seeDish() {
-    console.log(this.dish);
-  }
-
 }
