@@ -9,16 +9,17 @@ import { Router } from '@angular/router';
 export class LoginGuardGuard implements CanActivate {
   constructor(private _router :Router) {}
 
-  //redirects if it receives a false true
+  //Redirecciona al login si recibe false
   redirect(bool :boolean) {
     if(bool) {
       this._router.navigate(["login"]);
     }
   }
-
+  //Si no se encuentra un token en el local storage redirecciona al login y retorna false
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = sessionStorage.getItem("token") === null;
     this.redirect(token);
     return !token;

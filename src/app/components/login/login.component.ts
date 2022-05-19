@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  submitting :boolean = false;
+  submitting :boolean = false; //Para activar/desactivar boton de login
   loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -30,19 +30,24 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  emailError(input :string) {
+  //Recibe el nombre de un input y retorna true si tiene un error email
+  emailError(input :string) :boolean{
     return this.loginForm.get(input)?.errors?.['email'];
   }
-  requiredError(input :string) {
+  //Recibe el nombre de un input y retorna true si tiene un error required
+  requiredError(input :string) :boolean{
     return this.loginForm.get(input)?.errors?.['required'];
   }
+  //Recibe el nombre de un input y retorna true si el valor ingresado no es valido
   invalid(input :string) {
     return this.loginForm.get(input)?.invalid;
   }
+  //Recibe el nombre de un input y retorna true si el input fue manipulado
   touched(input :string) {
     return this.loginForm.get(input)?.touched;
   }
-
+  //Pide un token para poder logearse y lo guarda en el localstorage
+  //Si falla se lo hace saber al usario con un alert, de otra forma, redirecciona al home
   loginSubmit() {
     let reference = this;
     reference.submitting = true;

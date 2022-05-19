@@ -10,7 +10,8 @@ export class LoginTokenRequestService {
   constructor(private http :HttpClient) {
 
   }
-
+  //Recibe dos strings, el email y la contraseña
+  //Retorna  el observador de la peticion
   getToken(email:string, password:string) {
     const body = {
       email: email,

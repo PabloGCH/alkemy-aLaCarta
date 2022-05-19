@@ -17,9 +17,11 @@ export class HomeComponent implements OnInit{
   constructor(private dishRequest :DishRequestService, public menu :MenuDishesService) {
 
   }
+  //Retorna el menu
   getMenuDishes() :Array<JSON>{
     return this.menu.getMenu();
   }
+  //Muestra alert que notifica que se elimino un plato exitosamente
   removeSuccess() {
     Swal.fire({
       icon:"success",
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit{
       }
     })
   }
+  //Recibe un indice y elimina el plato con ese indice del menu
   removeFromMenu(index :number) {
     Swal.fire({
       icon:"warning",
@@ -50,6 +53,7 @@ export class HomeComponent implements OnInit{
       }
     });
   }
+  //Actualiza los valores totales del menu
   updateMenu() {
     this.totalHealthScore = this.menu.getTotalHealthScore();
     this.totalPrice = this.menu.getTotalPrice();
