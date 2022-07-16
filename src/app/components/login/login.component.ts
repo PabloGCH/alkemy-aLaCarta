@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         _router.navigate(['home']);
         reference.submitting = false;
       },
-      error(err) {
+      error() {
         Swal.fire({
           title: "Error during login",
           icon: "error",

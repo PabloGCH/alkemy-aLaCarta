@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Observable, ReplaySubject, throwError } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginTokenRequestService {
-  tokenURL :string = "http://challenge-react.alkemy.org/";
-  constructor(private http :HttpClient) {
+  constructor() {
 
   }
   //Recibe dos strings, el email y la contraseña
   //Retorna  el observador de la peticion
-  getToken(email:string, password:string) {
-    const body = {
-      email: email,
-      password: password
-    };
-    return this.http.post<any>(this.tokenURL, body);
+  getToken(email:string, password:string) :Observable<any>{
+    let response = new ReplaySubject<string>(1);
+    if(email == "testguy@mail.com" && password == "password") {
+	response.next("token");
+    } else {
+	response.error("Invalid user");
+    }
+    return response;
   }
 
 }
