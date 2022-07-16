@@ -6,10 +6,10 @@
     <h1 class="text-center">Search</h1>
     <label for="search">Search: </label>
     <input id="search" type="text" [formControl]="searchbar" class="form-control">
-    <div class="container py-2 px-2">
-    <div class="bg-light mb-2 position-relative" *ngFor="let dish of dishes, let i=index">
-        <app-dish-box [dish]="dish" [index]="i"></app-dish-box>
-        <button class="btn btn-success position-absolute bottom-0 end-0 mb-2 ms-3" (click)="addDishButton(i)">Add</button>
-    </div>
+    <div class="container py-5 px-2 mt-5">
+	    <div class="bg-light mb-2 position-relative dish-box py-2 px-2" *ngFor="let dish of dishes, let i=index">
+		<app-dish-box [dish]="dish" [index]="i"></app-dish-box>
+		<button class="btn btn-success position-absolute bottom-0 end-0 mb-2 me-2" (click)="addDishButton(i)">Add</button>
+	    </div>
     </div>
 </div>
