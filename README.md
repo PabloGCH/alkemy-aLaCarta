@@ -20,4 +20,8 @@ npm i
 ```
 Para instalar las dependencias necesarias.
 
+En la seccion del login ingresar los datos:
+  - email: testguy@email.com
+  - password: password
+
 Para realizar las peticiones para conseguir platos se usa la API de [spoonacular](https://spoonacular.com/food-api), actualmente esta utilizando mi APIKEY, pero si decides utilizar otra APIKEY, o la aplicación no funciona porque yo resetee la mia, solo es necesario modificar la variable apiKey en el servicio dish-request.service.ts.
