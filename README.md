@@ -1,4 +1,4 @@
-Projecto de Angular para alkemy
+Proyecto de Angular para alkemy
 =================================
 
 ### Descripción
